@@ -1,0 +1,42 @@
+config:
+  credentials: []
+  project_repos:
+    codebase.helmholtz.cloud/m-team/ai/yolov8_api:
+      branch: mlflow
+      repo: https://codebase.helmholtz.cloud/m-team/ai/yolov8_api
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/2.0.0
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      codebase.helmholtz.cloud/m-team/ai/yolov8_api git:
+        commands:
+        - /usr/bin/env sh .sqa/script.sunny-maroon-seahorse.sh
+        container: qc.acc_slaphappy-razzmatazz-labradoodle
+  QC.Doc:
+    repos:
+      codebase.helmholtz.cloud/m-team/ai/yolov8_api find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.ugly-denim-crocodile.sh
+        container: qc.doc_clammy-smalt-raccoon
+      codebase.helmholtz.cloud/m-team/ai/yolov8_api git:
+        commands:
+        - /usr/bin/env sh .sqa/script.nerdy-saffron-fish.sh
+        container: qc.doc_grumpy-harlequin-bulldog
+  QC.Lic:
+    repos:
+      codebase.helmholtz.cloud/m-team/ai/yolov8_api licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.freaky-green-tapir.sh
+        container: qc.lic_muggy-zucchini-lobster
+  QC.Ver:
+    repos:
+      codebase.helmholtz.cloud/m-team/ai/yolov8_api get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.cloudy-maroon-octopus.sh
+        container: qc.ver_freaky-ivory-swan
+timeout: 5400
